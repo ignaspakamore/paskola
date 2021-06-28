@@ -2,9 +2,9 @@
 
 class Calculate:
     def __init__(self, amount, period, intrate):
-        self.amount  = amount
-        self.period = period
-        self.intrate = intrate
+        self.amount  = int(amount)
+        self.period = int(period)
+        self.intrate = int(intrate)
 
 
     def loan_pars(self):

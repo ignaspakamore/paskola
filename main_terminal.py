@@ -6,6 +6,7 @@ from ascII import *
 import pickle as pkl
 import pandas as pd
 import os
+import datetime
 
 
 
@@ -20,7 +21,10 @@ def main(history):
         period = int(input("Terminas: "))
         intrate = int(input("Palukanos: "))
 
-        history.append([amount, period, intrate])
+        dt = datetime.datetime.now()
+        str_dt = dt.strftime("%y-%m-%d %H:%M")
+
+        history.append([amount, period, intrate, str_dt])
 
         info(amount, period, intrate)
 
@@ -59,7 +63,7 @@ def main(history):
         hst_matrix = np.append(hst_matrix, idx, axis=1)
 
         hstr()
-        headers = ['Paskolos suma', 'Terminas', 'Palukanos', 'Paieskos indeksas']
+        headers = ['Paskolos suma', 'Terminas', 'Palukanos', 'Data', 'Paieskos ndeksas']
         tp.table(hst_matrix, headers)
 
         print('[1] Pasirinkti indeksa [2] Pagrindinis Meniu, [3] Baigti darba')
@@ -68,13 +72,16 @@ def main(history):
 
         if inpt3 == '1':
             inpt_idx = int(input('Iveskite indeksa: '))
-            headers = ['Paskolos suma', 'Terminas', 'Palukanos', 'Paieskos indeksas']
+            headers = ['Paskolos suma', 'Terminas', 'Palukanos', 'Data', 'Paieskos indeksas']
+
             tp.table(hst_matrix[inpt_idx:], headers)
             print('[1] Pateikti pasirinkta paskolos mokejimo grafika [2] Pagrindinis meniu [3] Baigti darba')
 
             inpt4 = input()
 
             if inpt4 == '1':
+
+                print(hst_matrix[inpt_idx][0], hst_matrix[inpt_idx][1], hst_matrix[inpt_idx][2])
 
 
                 c = Calculate(hst_matrix[inpt_idx][0], hst_matrix[inpt_idx][1], hst_matrix[inpt_idx][2])
@@ -107,5 +114,29 @@ def main(history):
 if __name__ == "__main__":
     header()
     history = []
+    f = open('history.pkl', 'ab')
+
+    
+
     while True:
         main(history)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

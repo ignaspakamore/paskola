@@ -1,3 +1,5 @@
+import datetime 
+
 def header():
     print("""                                                                          
             _/_/_/                _/_/_/  _/    _/    _/_/    _/          _/_/    
@@ -46,4 +48,11 @@ def hstr():
             """)
 
 def godbye():
-    print('Bye')
+    dt = datetime.datetime.now()
+    print(f'Sesijos pabaiga {dt.strftime("%y-%m-%d %H:%M")}')
+
+
+
+
+
+
